@@ -15,35 +15,36 @@ const dicephoto = [
   "dice images/Dice-5.png",
   "dice images/Dice-6.png"
 ];
+
 function scores(){
   for (let i = 0; i < 5; i++){
-    if (dicenumbers == 1){
-      dicenumb++;
+    if (dicenumbers[i] == 1){
+      dicenumb[0]++;
     }
   }
   for (let i = 0; i < 5; i++){
-    if (dicenumbers == 2){
-      dicenumb++;
+    if (dicenumbers[i] == 2){
+      dicenumb[1]++;
     }
   }
   for (let i = 0; i < 5; i++){
-    if (dicenumbers == 3){
-      dicenumb++;
+    if (dicenumbers[i] == 3){
+      dicenumb[2]++;
     }
   }
   for (let i = 0; i < 5; i++){
     if (dicenumbers == 4){
-      dicenumb++;
+      dicenumb[3]++;
     }
   }
   for (let i = 0; i < 5; i++){
     if (dicenumbers == 5){
-      dicenumb++;
+      dicenumb[4]++;
     }
   }
   for (let i = 0; i < 5; i++){
     if (dicenumbers == 6){
-      dicenumb++;
+      dicenumb[5]++;
     }
   }
 }
@@ -83,6 +84,6 @@ function holddice(dice){
   }
 }
 
-function nextplayer(){
+// function nextplayer(){
   
-}
+// }
