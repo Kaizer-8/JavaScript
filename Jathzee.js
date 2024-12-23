@@ -16,9 +16,9 @@ const dicephoto = [
   "dice images/Dice-6.png"
 ];
 
-function scores(){
+function dicescores(){
   for (let i = 0; i < 6; i++){
-    if (dicenumbers[i] == 1){
+    if (dicepictures[i] == 1){
       dicenumb[0]++;
     }
   }
@@ -33,17 +33,17 @@ function scores(){
     }
   }
   for (let i = 0; i < 6; i++){
-    if (dicenumbers == 4){
+    if (dicenumbers[i] == 4){
       dicenumb[3]++;
     }
   }
   for (let i = 0; i < 6; i++){
-    if (dicenumbers == 5){
+    if (dicenumbers[i] == 5){
       dicenumb[4]++;
     }
   }
   for (let i = 0; i < 6; i++){
-    if (dicenumbers == 6){
+    if (dicenumbers[i] == 6){
       dicenumb[5]++;
     }
   }
@@ -60,7 +60,7 @@ function roll(){
   pictureschange();
   playerturn--;
   turns();
-  scores();
+  dicescores();
 }
 
 function turns(){
