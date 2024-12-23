@@ -17,32 +17,32 @@ const dicephoto = [
 ];
 
 function scores(){
-  for (let i = 0; i < 5; i++){
+  for (let i = 0; i < 6; i++){
     if (dicenumbers[i] == 1){
       dicenumb[0]++;
     }
   }
-  for (let i = 0; i < 5; i++){
+  for (let i = 0; i < 6; i++){
     if (dicenumbers[i] == 2){
       dicenumb[1]++;
     }
   }
-  for (let i = 0; i < 5; i++){
+  for (let i = 0; i < 6; i++){
     if (dicenumbers[i] == 3){
       dicenumb[2]++;
     }
   }
-  for (let i = 0; i < 5; i++){
+  for (let i = 0; i < 6; i++){
     if (dicenumbers == 4){
       dicenumb[3]++;
     }
   }
-  for (let i = 0; i < 5; i++){
+  for (let i = 0; i < 6; i++){
     if (dicenumbers == 5){
       dicenumb[4]++;
     }
   }
-  for (let i = 0; i < 5; i++){
+  for (let i = 0; i < 6; i++){
     if (dicenumbers == 6){
       dicenumb[5]++;
     }
