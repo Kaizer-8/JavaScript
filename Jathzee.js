@@ -87,10 +87,26 @@ function holddice(dice){
 }
 
 function scorebord(){
-  if(dicenumb[0] == 2){
-    document.getElementById("one").innerHTML = "2";
+for (let i = 0; i < 6; i++){
+    document.getElementById("one").innerHTML = dicenumb[0] * 1;
+    }
+for (let i = 0; i < 6; i++){
+    document.getElementById("two").innerHTML = dicenumb[1] * 2;
+    }
+for (let i = 0; i < 6; i++){
+    document.getElementById("three").innerHTML = dicenumb[2] * 3;
+    }
+for (let i = 0; i < 6; i++){
+    document.getElementById("four").innerHTML = dicenumb[3] * 4;
+    }
+for (let i = 0; i < 6; i++){
+    document.getElementById("five").innerHTML = dicenumb[4] * 5;
+    }
+for (let i = 0; i < 6; i++){
+    document.getElementById("six").innerHTML = dicenumb[5] * 6;
+    }
   }
-}
+
 
 // function scorebord(){
   /*
