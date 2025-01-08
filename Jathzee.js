@@ -19,7 +19,7 @@ const dicephoto = [
 // de functie geldt voor player 1 en als speler 1 zijn beurten heeft gebruikt dan gaat de functie door naar speler 2 
 function dicescores(){
   for (let i = 0; i < 6; i++){
-    if (dicepictures[i] == 1){
+    if (dicenumbers[i] == 1){
       dicenumb[0]++;
     }
   }
@@ -62,6 +62,7 @@ function roll(){
   playerturn--;
   turns();
   dicescores();
+  scorebord();
 }
 
 function turns(){
@@ -86,10 +87,15 @@ function holddice(dice){
 }
 
 function scorebord(){
+  if(dicenumb[0] == 2){
+    document.getElementById("one").innerHTML = "2";
+  }
+}
+
+// function scorebord(){
   /*
-  een grid waar de scores in komen te staan 
   een scorebord staat onderaan het scherm die de scores bij houd van mijn dicescores functie
-  voor 1 tot 6 moeten de scores van de dobbelstenen opgetelt worden voor de boventste half 
+  als er bijv. 3 keer 1 wordt gegooid dan moet het getal veranderen op mijn scorebord
 
   for (let i = 0; i < 6; i++){
   if (dicenumbers[i] == 3){
@@ -107,11 +113,16 @@ function scorebord(){
   if (dicenumbers[i] == 5){
   het scorebord van jathzee wordt true
   }
-  if (dicenumbers[0] == 1 && dicenumbers[1] == 1 && dicenumbers[2] == 1 && dicenumbers[3] == 1){
+  if (dicenumbers[i] == 1 && dicenumbers[i] == 1 && dicenumbers[i] == 1 && dicenumbers[i] == 1){
   kleine straat wordt waar op het scorebord
   }
-  if (dicenumbers[0] == 1 && dicenumbers[1] == 1 && dicenumbers[2] == 1 && dicenumbers[3] == 1 && dicenumbers[4] == 1){
+  if (dicenumbers[i] == 1 && dicenumbers[i] == 1 && dicenumbers[i] == 1 && dicenumbers[i] == 1 && dicenumbers[i] == 1){
   grote straat wordt waar op het scorebord
   }
   */
-}
+// }
+// function test(){
+//   for (let i = 0; i < 6; i++){
+//     document.getElementById() = score_dices[(dicenumb[i]-1)];
+//   }
+//   }
