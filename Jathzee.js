@@ -63,7 +63,15 @@ function roll(){
   turns();
   dicescores();
   scorebord();
+  reset();
 }
+
+function reset(){
+  for (let i = 0; i < 6; i++){
+    dicenumb[i] = 0;
+  }
+}
+
 
 function turns(){
   if (playerturn == 0){
@@ -105,25 +113,32 @@ for (let i = 0; i < 6; i++){
 for (let i = 0; i < 6; i++){
     document.getElementById("six").innerHTML = dicenumb[5] * 6;
     }
+for (let i = 0; i < 6; i++){
+    if (dicenumb[i] == 3){
+      document.getElementById("three of a kind").innerHTML = 30;
+    }
   }
+for (let i = 0; i < 6; i++){
+    if (dicenumb[i] == 4){
+      document.getElementById("four of a kind").innerHTML = 40;
+    }
+  }
+  for (let i = 0; i < 6; i++){
+    if (dicenumb[i] == 3){
+      for (let j = 0; j < 6; j++){
+        if (j != i){
+          if (dicenumb[j] == 2){
+            document.getElementById("full house").innerHTML = 25;
+          }
+        }
+      }
+    }
+  }
+}
 
-
-// function scorebord(){
   /*
-  een scorebord staat onderaan het scherm die de scores bij houd van mijn dicescores functie
-  als er bijv. 3 keer 1 wordt gegooid dan moet het getal veranderen op mijn scorebord
-
-  for (let i = 0; i < 6; i++){
-  if (dicenumbers[i] == 3){
-  het scorebord van three of a kind wordt true. het totaal van alle dobbelstenen wordt bij elkaar opgetelt 
-  }
-  for (let i = 0; i < 6; i++){
-  if (dicenumbers[i] == 4){
-  het scorebord van four of a kind wordt true.het totaal van alle dobbelstenen wordt bij elkaar opgetelt
-  }
-  for (let i = 0; i < 6; i++){
-  if (dicenumbers[i] == 3 && dicenumbers[i] == 2){
-  het scorebord van full house wordt true
+      if (dicenumb[i] == 3 && dicenumb[i] == 2){
+    document.getElementById("full house").innerHTML = 25;
   }
   for (let i = 0; i < 6; i++){
   if (dicenumbers[i] == 5){
@@ -137,8 +152,3 @@ for (let i = 0; i < 6; i++){
   }
   */
 // }
-// function test(){
-//   for (let i = 0; i < 6; i++){
-//     document.getElementById() = score_dices[(dicenumb[i]-1)];
-//   }
-//   }
