@@ -134,21 +134,20 @@ for (let i = 0; i < 6; i++){
       }
     }
   }
+  for (let i = 0; i < 6; i++){
+    if (dicenumb[i] == 5){
+      document.getElementById("yathzee").innerHTML = 50;
+    }
+  }
+  if (dicenumb[0] == 1 && dicenumb[1] == 1 && dicenumb[2] == 1 && dicenumb[3] == 1 && dicenumb[4] == 1 && dicenumb[5] == 0 
+    ||dicenumb[0] == 0 && dicenumb[1] == 1 && dicenumb[2] == 1 && dicenumb[3] == 1 && dicenumb[4] == 1 && dicenumb[5] == 1 ){
+    document.getElementById("large street").innerHTML = 40;
+    }
+    if (dicenumb[0] >= 1 && dicenumb[1] >= 1 && dicenumb[2] >= 1 && dicenumb[3] >= 1 && dicenumb[4] >= 0 && dicenumb[5] == 0||
+        dicenumb[0] >= 0 && dicenumb[1] >= 1 && dicenumb[2] >= 1 && dicenumb[3] >= 1 && dicenumb[4] >= 1 && dicenumb[5] == 0||
+        dicenumb[0] >= 0 && dicenumb[1] >= 0 && dicenumb[2] >= 1 && dicenumb[3] >= 1 && dicenumb[4] >= 1 && dicenumb[5] == 1){
+    document.getElementById("small street").innerHTML = 30;
+      }
 }
 
-  /*
-      if (dicenumb[i] == 3 && dicenumb[i] == 2){
-    document.getElementById("full house").innerHTML = 25;
-  }
-  for (let i = 0; i < 6; i++){
-  if (dicenumbers[i] == 5){
-  het scorebord van jathzee wordt true
-  }
-  if (dicenumbers[i] == 1 && dicenumbers[i] == 1 && dicenumbers[i] == 1 && dicenumbers[i] == 1){
-  kleine straat wordt waar op het scorebord
-  }
-  if (dicenumbers[i] == 1 && dicenumbers[i] == 1 && dicenumbers[i] == 1 && dicenumbers[i] == 1 && dicenumbers[i] == 1){
-  grote straat wordt waar op het scorebord
-  }
-  */
-// }
+
