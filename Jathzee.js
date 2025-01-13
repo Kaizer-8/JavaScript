@@ -1,7 +1,7 @@
 const id = ["dice1","dice2","dice3","dice4","dice5"];
 // de dubbele array slaat de score van de 2 spelers op.
-// const player1 = [[0,0,0,0,0],[1,1,1,1,1,1]];
-// const player2 = [[0,0,0,0,0],[1,1,1,1,1,1]];
+// const upperscorebord = [[0,0,0,0,0],[1,1,1,1,1,1]];
+// const lowerscorebord = [[0,0,0,0,0],[1,1,1,1,1,1]];
 let playerturn = 3;
 let playerturnboolean = true;
 const dicenumb = [0,0,0,0,0,0];
@@ -71,7 +71,6 @@ function reset(){
     dicenumb[i] = 0;
   }
 }
-
 
 function turns(){
   if (playerturn == 0){
@@ -148,6 +147,12 @@ for (let i = 0; i < 6; i++){
         dicenumb[0] >= 0 && dicenumb[1] >= 0 && dicenumb[2] >= 1 && dicenumb[3] >= 1 && dicenumb[4] >= 1 && dicenumb[5] == 1){
     document.getElementById("small street").innerHTML = 30;
       }
+      //chance alle dobbelstenen samen opgeteltd.
 }
-
+/*
+een syteem waar je kan kiezen welke score je wilt hebben. door middel van een button naast de score of je kan op de score clikken
+en dan confirmen met een button
+na een aantal beurten wordt score die opgeslagen is in de const player1 en player2 het totaal berekend en vergeleken de speler
+met de hoogste score wint.
+*/
 
