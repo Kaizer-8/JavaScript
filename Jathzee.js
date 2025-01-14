@@ -3,6 +3,7 @@ const id = ["dice1","dice2","dice3","dice4","dice5"];
 // const upperscorebord = [[0,0,0,0,0],[1,1,1,1,1,1]];
 // const lowerscorebord = [[0,0,0,0,0],[1,1,1,1,1,1]];
 let playerturn = 3;
+let allnumbers = 0;
 let playerturnboolean = true;
 const dicenumb = [0,0,0,0,0,0];
 const dicepictures = [1,2,3,4,5,6];
@@ -58,18 +59,24 @@ function roll(){
       }
     }
   }
+  reset();
+  lowerscorebordreset();
   pictureschange();
   playerturn--;
   turns();
   dicescores();
   scorebord();
-  reset();
+  
+  //
 }
 
 function reset(){
   for (let i = 0; i < 6; i++){
     dicenumb[i] = 0;
+    allnumbers = 0;
   }
+  // de reset functie moet ook werken voor het lagere scorebord.
+
 }
 
 function turns(){
@@ -92,6 +99,7 @@ function holddice(dice){
     keepdice[dice] = false;
   }
 }
+
 
 function scorebord(){
 for (let i = 0; i < 6; i++){
@@ -147,7 +155,28 @@ for (let i = 0; i < 6; i++){
         dicenumb[0] >= 0 && dicenumb[1] >= 0 && dicenumb[2] >= 1 && dicenumb[3] >= 1 && dicenumb[4] >= 1 && dicenumb[5] == 1){
     document.getElementById("small street").innerHTML = 30;
       }
-      //chance alle dobbelstenen samen opgeteltd.
+      for (let i = 0; i < 5; i++){
+        allnumbers += dicenumbers[i]
+        document.getElementById("chance").innerHTML = allnumbers;
+      }
+}
+
+function lowerscorebordreset(){
+  for (let i = 0; i < 6; i++){
+  if (dicenumb[i] < 3){
+    document.getElementById("three of a kind").innerHTML = 0;
+  }
+}
+  for (let i = 0; i < 6; i++){
+  if (dicenumb[i] < 4){
+    document.getElementById("four of a kind").innerHTML = 0;
+    }
+  }
+  for (let i = 0; i < 6; i++){
+    if (dicenumb[i] < 5){
+      document.getElementById("yathzee").innerHTML = 0;
+    }
+  }
 }
 /*
 een syteem waar je kan kiezen welke score je wilt hebben. door middel van een button naast de score of je kan op de score clikken
