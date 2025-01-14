@@ -1,7 +1,8 @@
 const id = ["dice1","dice2","dice3","dice4","dice5"];
 // de dubbele array slaat de score van de 2 spelers op.
-// const upperscorebord = [[0,0,0,0,0],[1,1,1,1,1,1]];
-// const lowerscorebord = [[0,0,0,0,0],[1,1,1,1,1,1]];
+const upperscorebord = [[0,0,0,0,0],[1,1,1,1,1,1]];
+const lowerscorebord = [[0,0,0,0,0],[1,1,1,1,1,1]];
+const scoresave = [false,false,false,false,false];
 let playerturn = 3;
 let allnumbers = 0;
 let playerturnboolean = true;
@@ -66,8 +67,6 @@ function roll(){
   turns();
   dicescores();
   scorebord();
-  
-  //
 }
 
 function reset(){
@@ -75,8 +74,6 @@ function reset(){
     dicenumb[i] = 0;
     allnumbers = 0;
   }
-  // de reset functie moet ook werken voor het lagere scorebord.
-
 }
 
 function turns(){
@@ -177,11 +174,38 @@ function lowerscorebordreset(){
       document.getElementById("yathzee").innerHTML = 0;
     }
   }
+  for (let i = 0; i < 6; i++){
+    if (dicenumb[i] != 3){
+      for (let j = 0; j < 6; j++){
+        if (j != i){
+          if (dicenumb[j] != 2){
+            document.getElementById("full house").innerHTML = 0;
+          }
+        }
+      }
+    }
+  }
+  if (dicenumb[0] != 1 && dicenumb[1] != 1 && dicenumb[2] != 1 && dicenumb[3] != 1 && dicenumb[4] != 1 && dicenumb[5] != 0 
+    ||dicenumb[0] != 0 && dicenumb[1] != 1 && dicenumb[2] != 1 && dicenumb[3] != 1 && dicenumb[4] != 1 && dicenumb[5] != 1 ){
+    document.getElementById("large street").innerHTML = 0;
+    }
+    if (dicenumb[0] != 1 && dicenumb[1] != 1 && dicenumb[2] != 1 && dicenumb[3] != 1 && dicenumb[4] != 0 && dicenumb[5] != 0||
+      dicenumb[0] != 0 && dicenumb[1] != 1 && dicenumb[2] != 1 && dicenumb[3] != 1 && dicenumb[4] != 1 && dicenumb[5] != 0||
+      dicenumb[0] != 0 && dicenumb[1] != 0 && dicenumb[2] != 1 && dicenumb[3] != 1 && dicenumb[4] != 1 && dicenumb[5] != 1){
+  document.getElementById("small street").innerHTML = 0;
+    }
+}
+
+function savescores(lowerscores){
+  if (scoresave[lowerscores] == false){
+    scoresave[lowerscores] == true;
+  }
+  dicenumb[0] = lowerscorebord[0][i];
 }
 /*
 een syteem waar je kan kiezen welke score je wilt hebben. door middel van een button naast de score of je kan op de score clikken
 en dan confirmen met een button
-na een aantal beurten wordt score die opgeslagen is in de const player1 en player2 het totaal berekend en vergeleken de speler
+na 5 beurten wordt score die opgeslagen is in de const player1 en player2 het totaal berekend en vergeleken de speler
 met de hoogste score wint.
 */
 
