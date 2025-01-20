@@ -98,16 +98,23 @@ function holddice(dice){
     keepdice[dice] = false;
   }
 }
+
 function nextplayers(){
+  // de array van keepdice moet gereset worden kan misschien op dezelfde manier als de playerturn.
+  // de html page moet worden gereset nadat nextplayers wordt gebruikt.
+  if (dicenumb[i] != dicenumb[0,0,0,0,0,0]){
+    dicenumb[i] = dicenumb[0,0,0,0,0,0];
+  }
+  if (playerturnboolean == false){
+    playerturnboolean = true;
+  }
+  timesrolled = 3;
   if (playerturn == 1){
     playerturn++;
   }
   else {
     playerturn = 1;
   }
-  timesrolled = 3;
-  reset();
-  keepdice[i] = keepdice[false,false,false,false,false];
 }
 
 
