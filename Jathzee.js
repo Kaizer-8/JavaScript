@@ -1,5 +1,4 @@
 const id = ["dice1","dice2","dice3","dice4","dice5"];
-// de dubbele array slaat de score van de 2 spelers op.
 let lowerscorebord = [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]];
 let upperscorebord = [[0,0,0,0,0,0],[0,0,0,0,0,0]];
 let scoresaveupper = [[false,false,false,false,false],[false,false,false,false,false]];
@@ -20,7 +19,7 @@ const dicephoto = [
   "dice images/Dice-5.png",
   "dice images/Dice-6.png"
 ];
-// de functie geldt voor player 1 en als speler 1 zijn beurten heeft gebruikt dan gaat de functie door naar speler 2 
+
 function dicescores(){
   for (let i = 0; i < 6; i++){
     if (dicenumbers[i] == 1){
@@ -53,7 +52,7 @@ function dicescores(){
     }
   }
 }
-// de functie geldt voor player 1 en als speler 1 zijn beurten heeft gebruikt dan gaat de functie door naar speler 2 
+
 function roll(){
   for (let i = 0; i < 5; i++){
     if (keepdice[i] == false){
@@ -99,7 +98,7 @@ function holddice(dice){
     keepdice[dice] = false;
   }
 }
-function nextplayer(){
+function nextplayers(){
   if (playerturn == 1){
     playerturn++;
   }
