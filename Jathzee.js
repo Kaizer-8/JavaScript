@@ -93,18 +93,26 @@ function pictureschange(){
 function holddice(dice){
   if (keepdice[dice] == false){
     keepdice[dice] = true;
+    document.getElementById(id[dice]).className = "clicked"
   }
   else if (keepdice[dice] == true){
     keepdice[dice] = false;
+    document.getElementById(id[dice]).className = "notclicked"
   }
 }
 
 function nextplayers(){
-  // de array van keepdice moet gereset worden kan misschien op dezelfde manier als de playerturn.
-  // de html page moet worden gereset nadat nextplayers wordt gebruikt.
-  if (dicenumb[i] != dicenumb[0,0,0,0,0,0]){
-    dicenumb[i] = dicenumb[0,0,0,0,0,0];
+  for (let i = 0; i < 6; i++){
+    if (dicenumb[i] != dicenumb[0,0,0,0,0,0])
+      dicenumb[0,0,0,0,0,0];
   }
+  for (let i = 0; i < 5; i++){
+    if (keepdice[i] != keepdice[false,false,false,false,false]){
+      keepdice[false,false,false,false,false];
+    }
+  }
+  reset();
+  scorebord();
   if (playerturnboolean == false){
     playerturnboolean = true;
   }
