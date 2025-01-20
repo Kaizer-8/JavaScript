@@ -212,3 +212,4 @@ en dan confirmen met een button
 na 5 beurten wordt score die opgeslagen is in de const player1 en player2 het totaal berekend en vergeleken de speler
 met de hoogste score wint.
 */
+
