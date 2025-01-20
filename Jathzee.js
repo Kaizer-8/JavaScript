@@ -99,6 +99,16 @@ function holddice(dice){
     keepdice[dice] = false;
   }
 }
+function nextplayer(){
+  if (playerturn == 1){
+    playerturn++;
+  }
+  else {
+    playerturn = 1;
+  }
+  timesrolled = 3;
+  keepdice = [false,false,false,false,false];
+}
 
 
 function scorebord(){
