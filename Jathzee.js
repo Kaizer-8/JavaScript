@@ -106,7 +106,8 @@ function nextplayers(){
     playerturn = 1;
   }
   timesrolled = 3;
-  keepdice = [false,false,false,false,false];
+  reset();
+  keepdice[i] = keepdice[false,false,false,false,false];
 }
 
 
