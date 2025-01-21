@@ -6,6 +6,7 @@ let scoresavelower = [[false,false,false,false,false],[false,false,false,false,f
 let timesrolled = 3;
 let playerturn = 1;
 let allnumbers = 0;
+let savescoresboolean = false;
 let playerturnboolean = true;
 const dicenumb = [0,0,0,0,0,0];
 const dicepictures = [1,2,3,4,5,6];
@@ -113,6 +114,7 @@ function nextplayers(){
   }
   reset();
   scorebord();
+  savescoresboolean = false;
   if (playerturnboolean == false){
     playerturnboolean = true;
   }
@@ -225,10 +227,15 @@ function lowerscorebordreset(){
 }
 
 function savescores(score){
+  if (savescoresboolean == false){
   if (scoresaveupper[playerturn-1][score] == false){
     scoresaveupper[playerturn-1][score] = true;
     upperscorebord[playerturn-1][score] = (dicenumb[score] * (score+1));
     console.log(upperscorebord[playerturn-1][score]);
+    }
+  }
+  if (savescoresboolean == false){
+    savescoresboolean = true;
   }
 }
 /*
