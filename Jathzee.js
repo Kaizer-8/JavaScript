@@ -6,6 +6,7 @@ let scoresavelower = [[false,false,false,false,false,false,false],[false,false,f
 let timesrolled = 3;
 let playerturn = 1;
 let allnumbers = 0;
+const booleanscore = [false,false,false,false,false,false,false];
 let savescoresboolean = false;
 let playerturnboolean = true;
 const dicenumb = [0,0,0,0,0,0];
@@ -159,11 +160,13 @@ for (let i = 0; i < 6; i++){
 for (let i = 0; i < 6; i++){
     if (dicenumb[i] == 3){
       document.getElementById("three of a kind").innerHTML = 30;
+      booleanscore[0] = true;
     }
   }
 for (let i = 0; i < 6; i++){
     if (dicenumb[i] == 4){
       document.getElementById("four of a kind").innerHTML = 40;
+      booleanscore[1] = true;
     }
   }
   for (let i = 0; i < 6; i++){
@@ -172,31 +175,35 @@ for (let i = 0; i < 6; i++){
         if (j != i){
           if (dicenumb[j] == 2){
             document.getElementById("full house").innerHTML = 25;
+            booleanscore[2] = true;
           }
         }
       }
     }
   }
-  for (let i = 0; i < 6; i++){
-    if (dicenumb[i] == 5){
-      document.getElementById("yathzee").innerHTML = 50;
-    }
+  if (dicenumb[0] >= 1 && dicenumb[1] >= 1 && dicenumb[2] >= 1 && dicenumb[3] >= 1 && dicenumb[4] >= 0 && dicenumb[5] == 0||
+    dicenumb[0] >= 0 && dicenumb[1] >= 1 && dicenumb[2] >= 1 && dicenumb[3] >= 1 && dicenumb[4] >= 1 && dicenumb[5] == 0||
+    dicenumb[0] >= 0 && dicenumb[1] >= 0 && dicenumb[2] >= 1 && dicenumb[3] >= 1 && dicenumb[4] >= 1 && dicenumb[5] == 1){
+  document.getElementById("small street").innerHTML = 30;
+  booleanscore[3] = true;
   }
   if (dicenumb[0] == 1 && dicenumb[1] == 1 && dicenumb[2] == 1 && dicenumb[3] == 1 && dicenumb[4] == 1 && dicenumb[5] == 0 
     ||dicenumb[0] == 0 && dicenumb[1] == 1 && dicenumb[2] == 1 && dicenumb[3] == 1 && dicenumb[4] == 1 && dicenumb[5] == 1 ){
     document.getElementById("large street").innerHTML = 40;
+    booleanscore[4] = true;
     }
-    if (dicenumb[0] >= 1 && dicenumb[1] >= 1 && dicenumb[2] >= 1 && dicenumb[3] >= 1 && dicenumb[4] >= 0 && dicenumb[5] == 0||
-        dicenumb[0] >= 0 && dicenumb[1] >= 1 && dicenumb[2] >= 1 && dicenumb[3] >= 1 && dicenumb[4] >= 1 && dicenumb[5] == 0||
-        dicenumb[0] >= 0 && dicenumb[1] >= 0 && dicenumb[2] >= 1 && dicenumb[3] >= 1 && dicenumb[4] >= 1 && dicenumb[5] == 1){
-    document.getElementById("small street").innerHTML = 30;
-      }
-      for (let i = 0; i < 5; i++){
-        allnumbers += dicenumbers[i]
-        document.getElementById("chance").innerHTML = allnumbers;
-      }
+  for (let i = 0; i < 5; i++){
+      allnumbers += dicenumbers[i]
+      document.getElementById("chance").innerHTML = allnumbers;
+      booleanscore[5] = true;
+  }
+  for (let i = 0; i < 6; i++){
+    if (dicenumb[i] == 5){
+      document.getElementById("yathzee").innerHTML = 50;
+      booleanscore[6] = true;
+    }
+  }
 }
-
 function lowerscorebordreset(){
   for (let i = 0; i < 6; i++){
   if (dicenumb[i] < 3){
@@ -237,25 +244,55 @@ function lowerscorebordreset(){
 
 function savescores(score){
   if (savescoresboolean == false){
+  if (score <= 5){
   if (scoresaveupper[playerturn-1][score] == false){
       scoresaveupper[playerturn-1][score] = true;
       upperscorebord[playerturn-1][score] = (dicenumb[score] * (score+1));
       console.log(upperscorebord[playerturn-1][score]);
     }
   }
-  if (savescoresboolean == false){
-  if (scoresavelower[playerturn-1][score] == false){
-      scoresavelower[playerturn-1][score] = true;
-       //als er full house yathzee enz. wordt gegooit dan moet het worden opgeslagen in de array van lowerscorebord
-       // mischien door de stukjes code van mijn scorebord te herhalen of door te zeggen dat als een stuk code van mijn
-       // lowerscorebord waar is dan wordt dit nummer in mijn array gedaan.
+
+  // if (scoresavelower[playerturn-1][score] == false){
+  //     scoresavelower[playerturn-1][score] = true;
+    if (score == 6){
+    if(booleanscore[0] == true){
+      lowerscorebord[playerturn-1][0] = 30;
     }
   }
-  if (savescoresboolean == false){
-    savescoresboolean = true;
+    if (score == 7){
+    if(booleanscore[1] == true){
+      lowerscorebord[playerturn-1][1] = 40;
+    }
+  }
+    if (score == 8){
+    if(booleanscore[2] == true){
+      lowerscorebord[playerturn-1][2] = 25;
+    }
+  }
+    if (score == 9){
+    if(booleanscore[3] == true){
+      lowerscorebord[playerturn-1][3] = 30;
+    }
+  }
+    if (score == 10){
+    if(booleanscore[4] == true){
+      lowerscorebord[playerturn-1][4] = 40;
+    }
+  }
+    if (score == 11){
+    if(booleanscore[5] == true){
+      lowerscorebord[playerturn-1][5] = allnumbers;
+    }
+  }
+    if (score == 12){
+    if(booleanscore[6] == true){
+      lowerscorebord[playerturn-1][6] = 50;
+      savescoresboolean = true;
+      }
+    }
   }
 }
-
+ 
 /*
 for (let i = 0; i < 6; i++){
 een loop die door de array upperscore en lowerscorebord gaat en de html op mijn page verandert en er voor zorgt dat die score 
