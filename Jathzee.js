@@ -2,7 +2,7 @@ const id = ["dice1","dice2","dice3","dice4","dice5"];
 let lowerscorebord = [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]];
 let upperscorebord = [[0,0,0,0,0,0],[0,0,0,0,0,0]];
 let scoresaveupper = [[false,false,false,false,false,false],[false,false,false,false,false,false]];
-let scoresavelower = [[false,false,false,false,false],[false,false,false,false,false]];
+let scoresavelower = [[false,false,false,false,false,false,false],[false,false,false,false,false,false,false]];
 let timesrolled = 3;
 let playerturn = 1;
 let allnumbers = 0;
@@ -83,6 +83,10 @@ function turns(){
   if (timesrolled == 0){
     playerturnboolean = false;
   }
+/*
+na 5 beurten wordt score die opgeslagen is in de const player1 en player2 het totaal berekend en vergeleken de speler
+met de hoogste score wint.
+*/
 }
 
 function pictureschange(){
@@ -103,17 +107,20 @@ function holddice(dice){
 }
 
 function nextplayers(){
-  for (let i = 0; i < 6; i++){
-    if (dicenumb[i] != dicenumb[0,0,0,0,0,0])
-      dicenumb[0,0,0,0,0,0];
-  }
   for (let i = 0; i < 5; i++){
-    if (keepdice[i] != keepdice[false,false,false,false,false]){
-      keepdice[false,false,false,false,false];
-    }
+   
+      keepdice[i] = false;
+  }
+  for (let i = 0; i < 6; i++){
+      dicenumb[i] = 0;
   }
   reset();
   scorebord();
+  holddice();
+  lowerscorebordreset();
+  for (let i = 0; i < 5; i++){
+    document.getElementById(id[i]).className = "notclicked"
+  }
   savescoresboolean = false;
   if (playerturnboolean == false){
     playerturnboolean = true;
@@ -229,18 +236,28 @@ function lowerscorebordreset(){
 function savescores(score){
   if (savescoresboolean == false){
   if (scoresaveupper[playerturn-1][score] == false){
-    scoresaveupper[playerturn-1][score] = true;
-    upperscorebord[playerturn-1][score] = (dicenumb[score] * (score+1));
-    console.log(upperscorebord[playerturn-1][score]);
+      scoresaveupper[playerturn-1][score] = true;
+      upperscorebord[playerturn-1][score] = (dicenumb[score] * (score+1));
+      console.log(upperscorebord[playerturn-1][score]);
+    }
+  }
+  if (savescoresboolean == false){
+  if (scoresavelower[playerturn-1][score] == false){
+      scoresavelower[playerturn-1][score] = true;
+       //als er full house yathzee enz. wordt gegooit dan moet het worden opgeslagen in de array van lowerscorebord
+       // mischien door de stukjes code van mijn scorebord te herhalen of door te zeggen dat als een stuk code van mijn
+       // lowerscorebord waar is dan wordt dit nummer in mijn array gedaan.
     }
   }
   if (savescoresboolean == false){
     savescoresboolean = true;
   }
 }
+
 /*
-een syteem waar je kan kiezen welke score je wilt hebben. door middel van een button naast de score of je kan op de score clikken
-en dan confirmen met een button
-na 5 beurten wordt score die opgeslagen is in de const player1 en player2 het totaal berekend en vergeleken de speler
-met de hoogste score wint.
+for (let i = 0; i < 6; i++){
+een loop die door de array upperscore en lowerscorebord gaat en de html op mijn page verandert en er voor zorgt dat die score 
+niet nog een keer gebruikt kan worden dus geclicked en opgeslagen.
+}
 */
+
