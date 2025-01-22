@@ -121,6 +121,8 @@ function nextplayers(){
   for (let i = 0; i < 5; i++){
     document.getElementById(id[i]).className = "notclicked"
   }
+    document.getElementById("chance").innerHTML = "0"
+  // chance moet ook gereset worden als nextplayer wordt gebruikt
   savescoresboolean = false;
   if (playerturnboolean == false){
     playerturnboolean = true;
