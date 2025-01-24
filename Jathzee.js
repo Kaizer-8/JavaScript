@@ -185,17 +185,23 @@ for (let i = 0; i < 6; i++){
     dicenumb[0] >= 0 && dicenumb[1] >= 1 && dicenumb[2] >= 1 && dicenumb[3] >= 1 && dicenumb[4] >= 1 && dicenumb[5] == 0||
     dicenumb[0] >= 0 && dicenumb[1] >= 0 && dicenumb[2] >= 1 && dicenumb[3] >= 1 && dicenumb[4] >= 1 && dicenumb[5] == 1){
   document.getElementById("small street").innerHTML = 30;
-  booleanscore[3] = true;
+  for (let i = 0; i < 7; i++){
+    booleanscore[3] = true;
+    }
   }
   if (dicenumb[0] == 1 && dicenumb[1] == 1 && dicenumb[2] == 1 && dicenumb[3] == 1 && dicenumb[4] == 1 && dicenumb[5] == 0 
     ||dicenumb[0] == 0 && dicenumb[1] == 1 && dicenumb[2] == 1 && dicenumb[3] == 1 && dicenumb[4] == 1 && dicenumb[5] == 1 ){
     document.getElementById("large street").innerHTML = 40;
+    for (let i = 0; i < 7; i++){
     booleanscore[4] = true;
     }
+  }
   for (let i = 0; i < 5; i++){
       allnumbers += dicenumbers[i]
       document.getElementById("chance").innerHTML = allnumbers;
-      booleanscore[5] = true;
+    for (let i = 0; i < 7; i++){
+        booleanscore[5] = true;
+        }
   }
   for (let i = 0; i < 6; i++){
     if (dicenumb[i] == 5){
@@ -273,6 +279,9 @@ function savescores(score){
     if(booleanscore[3] == true){
       lowerscorebord[playerturn-1][3] = 30;
     }
+    // else if (booleanscore[3] != false){
+    //   lowerscorebord[playerturn-1][3] = 0;
+    // }
   }
     if (score == 10){
     if(booleanscore[4] == true){
