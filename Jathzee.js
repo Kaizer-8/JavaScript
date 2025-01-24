@@ -115,6 +115,9 @@ function nextplayers(){
   for (let i = 0; i < 6; i++){
       dicenumb[i] = 0;
   }
+  for (let i = 0; i < 7; i++){
+    booleanscore[i] = false;
+  }
   reset();
   scorebord();
   holddice();
@@ -213,16 +216,19 @@ for (let i = 0; i < 6; i++){
 function lowerscorebordreset(){
   for (let i = 0; i < 6; i++){
   if (dicenumb[i] < 3){
+    booleanscore[0] = false;
     document.getElementById("three of a kind").innerHTML = 0;
   }
 }
   for (let i = 0; i < 6; i++){
   if (dicenumb[i] < 4){
+    booleanscore[1] = false;
     document.getElementById("four of a kind").innerHTML = 0;
     }
   }
   for (let i = 0; i < 6; i++){
     if (dicenumb[i] < 5){
+      booleanscore[5] = false;
       document.getElementById("yathzee").innerHTML = 0;
     }
   }
@@ -231,6 +237,7 @@ function lowerscorebordreset(){
       for (let j = 0; j < 6; j++){
         if (j != i){
           if (dicenumb[j] != 2){
+            booleanscore[2] = false;
             document.getElementById("full house").innerHTML = 0;
           }
         }
@@ -239,13 +246,15 @@ function lowerscorebordreset(){
   }
   if (dicenumb[0] != 1 && dicenumb[1] != 1 && dicenumb[2] != 1 && dicenumb[3] != 1 && dicenumb[4] != 1 && dicenumb[5] != 0 
     ||dicenumb[0] != 0 && dicenumb[1] != 1 && dicenumb[2] != 1 && dicenumb[3] != 1 && dicenumb[4] != 1 && dicenumb[5] != 1 ){
+      booleanscore[4] = false;
     document.getElementById("large street").innerHTML = 0;
     }
     if (dicenumb[0] != 1 && dicenumb[1] != 1 && dicenumb[2] != 1 && dicenumb[3] != 1 && dicenumb[4] != 0 && dicenumb[5] != 0||
       dicenumb[0] != 0 && dicenumb[1] != 1 && dicenumb[2] != 1 && dicenumb[3] != 1 && dicenumb[4] != 1 && dicenumb[5] != 0||
       dicenumb[0] != 0 && dicenumb[1] != 0 && dicenumb[2] != 1 && dicenumb[3] != 1 && dicenumb[4] != 1 && dicenumb[5] != 1){
+        booleanscore[3] = false;
   document.getElementById("small street").innerHTML = 0;
-    }
+  }
 }
 
 function savescores(score){
@@ -258,8 +267,6 @@ function savescores(score){
     }
   }
 
-  // if (scoresavelower[playerturn-1][score] == false){
-  //     scoresavelower[playerturn-1][score] = true;
     if (score == 6){
     if(booleanscore[0] == true){
       lowerscorebord[playerturn-1][0] = 30;
@@ -279,9 +286,9 @@ function savescores(score){
     if(booleanscore[3] == true){
       lowerscorebord[playerturn-1][3] = 30;
     }
-    // else if (booleanscore[3] != false){
-    //   lowerscorebord[playerturn-1][3] = 0;
-    // }
+    else if (booleanscore[3] == false){
+      lowerscorebord[playerturn-1][3] = 0;
+    }
   }
     if (score == 10){
     if(booleanscore[4] == true){
