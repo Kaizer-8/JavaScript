@@ -6,6 +6,8 @@ let scoresavelower = [[false,false,false,false,false,false,false],[false,false,f
 let timesrolled = 3;
 let playerturn = 1;
 let allnumbers = 0;
+let totalturns = 6;
+let endgameboolean = false;
 const booleanscore = [false,false,false,false,false,false,false];
 let savescoresboolean = false;
 let playerturnboolean = true;
@@ -56,6 +58,7 @@ function dicescores(){
 }
 
 function roll(){
+  if (endgameboolean == false){
   for (let i = 0; i < 5; i++){
     if (keepdice[i] == false){
       if (playerturnboolean == true){
@@ -63,6 +66,7 @@ function roll(){
       }
     }
   }
+}
   reset();
   lowerscorebordreset();
   pictureschange();
@@ -84,10 +88,24 @@ function turns(){
   if (timesrolled == 0){
     playerturnboolean = false;
   }
-/*
-na 5 beurten wordt score die opgeslagen is in de const player1 en player2 het totaal berekend en vergeleken de speler
-met de hoogste score wint.
-*/
+  if (totalturns == 0){
+    endgameboolean = true;
+  }
+  if (endgameboolean == true){
+    for (let i = 0; i < 6; i ++){
+    scoresaveupper[0][i]++
+  }
+}
+  for (let i = 0; i < 7; i++){
+    scoresavelower[0][i]++
+}
+for (let i = 0; i < 6; i++){
+  scoresaveupper[1][i]++
+}
+for (let i = 0; i < 7; i++){
+  scoresavelower[1][i]++ 
+}
+//de score moet die wordt berekent wordt opgeteld en vergeleken en er wordt een alert gegeven voor de speler die wint met de score erbij.
 }
 
 function pictureschange(){
@@ -108,6 +126,7 @@ function holddice(dice){
 }
 
 function nextplayers(){
+  if (endgameboolean == false){
   for (let i = 0; i < 5; i++){
    
       keepdice[i] = false;
@@ -118,6 +137,7 @@ function nextplayers(){
   for (let i = 0; i < 7; i++){
     booleanscore[i] = false;
   }
+  totalturns--
   reset();
   scorebord();
   holddice();
@@ -126,7 +146,6 @@ function nextplayers(){
     document.getElementById(id[i]).className = "notclicked"
   }
     document.getElementById("chance").innerHTML = "0"
-  // chance moet ook gereset worden als nextplayer wordt gebruikt
   savescoresboolean = false;
   if (playerturnboolean == false){
     playerturnboolean = true;
@@ -138,6 +157,7 @@ function nextplayers(){
   else {
     playerturn = 1;
   }
+}
 }
 
 
@@ -309,10 +329,5 @@ function savescores(score){
   }
 }
  
-/*
-for (let i = 0; i < 6; i++){
-een loop die door de array upperscore en lowerscorebord gaat en de html op mijn page verandert en er voor zorgt dat die score 
-niet nog een keer gebruikt kan worden dus geclicked en opgeslagen.
-}
-*/
+
 
