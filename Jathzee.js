@@ -3,6 +3,8 @@ let lowerscorebord = [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]];
 let upperscorebord = [[0,0,0,0,0,0],[0,0,0,0,0,0]];
 let scoresaveupper = [[false,false,false,false,false,false],[false,false,false,false,false,false]];
 let scoresavelower = [[false,false,false,false,false,false,false],[false,false,false,false,false,false,false]];
+let totalturnboolean = true;
+let totalturns = 6;
 let timesrolled = 3;
 let playerturn = 1;
 let allnumbers = 0;
@@ -56,6 +58,7 @@ function dicescores(){
 }
 
 function roll(){
+  if (totalturnboolean == true){
   for (let i = 0; i < 5; i++){
     if (keepdice[i] == false){
       if (playerturnboolean == true){
@@ -70,7 +73,7 @@ function roll(){
   turns();
   dicescores();
   scorebord();
-
+  }
 }
 
 function reset(){
@@ -80,7 +83,23 @@ function reset(){
   }
 }
 
+function engame(){
+  if (totalturnboolean == false){
+  lowerscorebord[0][i]++
+  upperscorebord[0][i]++
+  lowerscorebord[1][i]++
+  upperscorebord[1][i]++
+  }
+  //if (//player 1 > player 2){
+    //alert player1 wins + score
+    //}
+    //hetzelfde voor de andere kant op
+}
+
 function turns(){
+  if (totalturns == 0){
+    totalturnboolean = false
+  }
   if (timesrolled == 0){
     playerturnboolean = false;
   }
@@ -108,6 +127,7 @@ function holddice(dice){
 }
 
 function nextplayers(){
+  if (totalturnboolean == true){
   for (let i = 0; i < 5; i++){
    
       keepdice[i] = false;
@@ -119,6 +139,7 @@ function nextplayers(){
   scorebord();
   holddice();
   lowerscorebordreset();
+  totalturns--;
   for (let i = 0; i < 5; i++){
     document.getElementById(id[i]).className = "notclicked"
   }
@@ -136,7 +157,7 @@ function nextplayers(){
     playerturn = 1;
   }
 }
-
+}
 
 function scorebord(){
 for (let i = 0; i < 6; i++){
@@ -251,9 +272,6 @@ function savescores(score){
       console.log(upperscorebord[playerturn-1][score]);
     }
   }
-
-  // if (scoresavelower[playerturn-1][score] == false){
-  //     scoresavelower[playerturn-1][score] = true;
     if (score == 6){
     if(booleanscore[0] == true){
       lowerscorebord[playerturn-1][0] = 30;
