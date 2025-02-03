@@ -10,6 +10,10 @@ let engamescore1 = 0;
 let playerturn = 1;
 let allnumbers = 0;
 let totalturns = 6;
+let tempscore = 0;
+let tempscore1 = 0;
+let tempscore2 = 0;
+let tempscore3 = 0;
 let endgameboolean = false;
 const booleanscore = [false,false,false,false,false,false,false];
 let savescoresboolean = false;
@@ -63,6 +67,7 @@ function dicescores(){
 
 function roll(){
   // als endgameboolean is false dan genereerd hij 5 random nummers voor mijn dice.  
+  turns();
   if (endgameboolean == false){
     document.getElementById("small street").innerHTML = "0"
     document.getElementById("large street").innerHTML = "0"
@@ -80,7 +85,6 @@ function roll(){
   lowerscorebordreset();
   pictureschange();
   timesrolled--
-  turns();
   dicescores();
   scorebord();
 
@@ -103,18 +107,27 @@ function turns(){
     endgameboolean = true;
   }
   if (endgameboolean == true){
-for (let i = 0; i < 6; i ++){
-    scoresaveupper[0][i]++
+for (let i = 0; i < 6; i++){
+  tempscore += upperscorebord[0][i]
 }
 for (let i = 0; i < 6; i++){
-    scoresavelower[0][i]++  
+  tempscore1 += lowerscorebord[0][i] 
   }
-}
+
 for (let i = 0; i < 6; i++){
-  scoresaveupper[1][i]++
+  tempscore2 += upperscorebord[1][i]
 }
 for (let i = 0; i < 7; i++){
-  scoresavelower[1][i]++ 
+  tempscore3 += lowerscorebord[1][i] 
+  }
+}
+finalscore = tempscore + tempscore1;
+finalscore1 = tempscore2 + tempscore3;
+if (finalscore > finalscore1){
+  alert("player 1 wins" + finalscore);
+}
+if (finalscore1 > finalscore){
+  alert("player2 wins" + finalscore1);
 }
 //de score moet die wordt berekent wordt opgeteld en vergeleken en er wordt een alert gegeven voor de speler die wint met de score erbij.
 }
