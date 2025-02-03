@@ -1,13 +1,16 @@
+
 const id = ["dice1","dice2","dice3","dice4","dice5"];
 let lowerscorebord = [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]];
 let upperscorebord = [[0,0,0,0,0,0],[0,0,0,0,0,0]];
 let scoresaveupper = [[false,false,false,false,false,false],[false,false,false,false,false,false]];
 let scoresavelower = [[false,false,false,false,false,false,false],[false,false,false,false,false,false,false]];
-let totalturnboolean = true;
-let totalturns = 6;
 let timesrolled = 3;
+let engamescore = 0;
+let engamescore1 = 0;
 let playerturn = 1;
 let allnumbers = 0;
+let totalturns = 6;
+let endgameboolean = false;
 const booleanscore = [false,false,false,false,false,false,false];
 let savescoresboolean = false;
 let playerturnboolean = true;
@@ -25,6 +28,7 @@ const dicephoto = [
 ];
 
 function dicescores(){
+  // checkt hoe vaak een dice wordt gerold
   for (let i = 0; i < 6; i++){
     if (dicenumbers[i] == 1){
       dicenumb[0]++;
@@ -58,7 +62,12 @@ function dicescores(){
 }
 
 function roll(){
-  if (totalturnboolean == true){
+  // als endgameboolean is false dan genereerd hij 5 random nummers voor mijn dice.  
+  if (endgameboolean == false){
+    document.getElementById("small street").innerHTML = "0"
+    document.getElementById("large street").innerHTML = "0"
+    document.getElementById("three of a kind").innerHTML = "0"
+    document.getElementById("four of a kind").innerHTML = "0"
   for (let i = 0; i < 5; i++){
     if (keepdice[i] == false){
       if (playerturnboolean == true){
@@ -66,6 +75,7 @@ function roll(){
       }
     }
   }
+}
   reset();
   lowerscorebordreset();
   pictureschange();
@@ -73,49 +83,51 @@ function roll(){
   turns();
   dicescores();
   scorebord();
-  }
+
 }
 
 function reset(){
+  // reset de gerolede nummers 
   for (let i = 0; i < 6; i++){
     dicenumb[i] = 0;
     allnumbers = 0;
   }
 }
 
-function engame(){
-  if (totalturnboolean == false){
-  lowerscorebord[0][i]++
-  upperscorebord[0][i]++
-  lowerscorebord[1][i]++
-  upperscorebord[1][i]++
-  }
-  //if (//player 1 > player 2){
-    //alert player1 wins + score
-    //}
-    //hetzelfde voor de andere kant op
-}
-
 function turns(){
-  if (totalturns == 0){
-    totalturnboolean = false
-  }
+  //geeft aan hoeveel beurten een speler kan nemen en hoeveel beurten er totaal genomen kunnen worden.
   if (timesrolled == 0){
     playerturnboolean = false;
   }
-/*
-na 5 beurten wordt score die opgeslagen is in de const player1 en player2 het totaal berekend en vergeleken de speler
-met de hoogste score wint.
-*/
+  if (totalturns <= 0){
+    endgameboolean = true;
+  }
+  if (endgameboolean == true){
+for (let i = 0; i < 6; i ++){
+    scoresaveupper[0][i]++
+}
+for (let i = 0; i < 6; i++){
+    scoresavelower[0][i]++  
+  }
+}
+for (let i = 0; i < 6; i++){
+  scoresaveupper[1][i]++
+}
+for (let i = 0; i < 7; i++){
+  scoresavelower[1][i]++ 
+}
+//de score moet die wordt berekent wordt opgeteld en vergeleken en er wordt een alert gegeven voor de speler die wint met de score erbij.
 }
 
 function pictureschange(){
+  //verdanert de photo op basis van wat er wordt gegooid bij mijn dicenumb
     for (let i = 0; i < 5; i++){
         document.getElementById(id[i]).src = dicephoto[(dicenumbers[i]-1)];
   }
 }
 
 function holddice(dice){
+  // kijkt of er wordt gedrukt op de dice en als er op de dice is gedrukt dan wordt de roll functie niet uitgevoerd.
   if (keepdice[dice] == false){
     keepdice[dice] = true;
     document.getElementById(id[dice]).className = "clicked"
@@ -127,7 +139,8 @@ function holddice(dice){
 }
 
 function nextplayers(){
-  if (totalturnboolean == true){
+  //button om naar de volgende speler in mijn array te gaan
+  if (endgameboolean == false){
   for (let i = 0; i < 5; i++){
    
       keepdice[i] = false;
@@ -135,16 +148,22 @@ function nextplayers(){
   for (let i = 0; i < 6; i++){
       dicenumb[i] = 0;
   }
+  for (let i = 0; i < 7; i++){
+    booleanscore[i] = false;
+  }
+  totalturns--
   reset();
   scorebord();
   holddice();
   lowerscorebordreset();
-  totalturns--;
   for (let i = 0; i < 5; i++){
     document.getElementById(id[i]).className = "notclicked"
   }
+    document.getElementById("small street").innerHTML = "0"
+    document.getElementById("large street").innerHTML = "0"
+    document.getElementById("three of a kind").innerHTML = "0"
+    document.getElementById("four of a kind").innerHTML = "0"
     document.getElementById("chance").innerHTML = "0"
-  // chance moet ook gereset worden als nextplayer wordt gebruikt
   savescoresboolean = false;
   if (playerturnboolean == false){
     playerturnboolean = true;
@@ -159,7 +178,9 @@ function nextplayers(){
 }
 }
 
+
 function scorebord(){
+  //bepaald de score die gegooid wordt op basis van wat in mijn dicenumb staat
 for (let i = 0; i < 6; i++){
     document.getElementById("one").innerHTML = dicenumb[0] * 1;
     }
@@ -206,17 +227,23 @@ for (let i = 0; i < 6; i++){
     dicenumb[0] >= 0 && dicenumb[1] >= 1 && dicenumb[2] >= 1 && dicenumb[3] >= 1 && dicenumb[4] >= 1 && dicenumb[5] == 0||
     dicenumb[0] >= 0 && dicenumb[1] >= 0 && dicenumb[2] >= 1 && dicenumb[3] >= 1 && dicenumb[4] >= 1 && dicenumb[5] == 1){
   document.getElementById("small street").innerHTML = 30;
-  booleanscore[3] = true;
+  for (let i = 0; i < 7; i++){
+    booleanscore[3] = true;
+    }
   }
   if (dicenumb[0] == 1 && dicenumb[1] == 1 && dicenumb[2] == 1 && dicenumb[3] == 1 && dicenumb[4] == 1 && dicenumb[5] == 0 
     ||dicenumb[0] == 0 && dicenumb[1] == 1 && dicenumb[2] == 1 && dicenumb[3] == 1 && dicenumb[4] == 1 && dicenumb[5] == 1 ){
     document.getElementById("large street").innerHTML = 40;
+    for (let i = 0; i < 7; i++){
     booleanscore[4] = true;
     }
+  }
   for (let i = 0; i < 5; i++){
       allnumbers += dicenumbers[i]
       document.getElementById("chance").innerHTML = allnumbers;
-      booleanscore[5] = true;
+    for (let i = 0; i < 7; i++){
+        booleanscore[5] = true;
+        }
   }
   for (let i = 0; i < 6; i++){
     if (dicenumb[i] == 5){
@@ -226,18 +253,22 @@ for (let i = 0; i < 6; i++){
   }
 }
 function lowerscorebordreset(){
+  // reset het lowerscorebord als de functie wordt gecalled
   for (let i = 0; i < 6; i++){
   if (dicenumb[i] < 3){
+    booleanscore[0] = false;
     document.getElementById("three of a kind").innerHTML = 0;
   }
 }
   for (let i = 0; i < 6; i++){
   if (dicenumb[i] < 4){
+    booleanscore[1] = false;
     document.getElementById("four of a kind").innerHTML = 0;
     }
   }
   for (let i = 0; i < 6; i++){
     if (dicenumb[i] < 5){
+      booleanscore[5] = false;
       document.getElementById("yathzee").innerHTML = 0;
     }
   }
@@ -246,6 +277,7 @@ function lowerscorebordreset(){
       for (let j = 0; j < 6; j++){
         if (j != i){
           if (dicenumb[j] != 2){
+            booleanscore[2] = false;
             document.getElementById("full house").innerHTML = 0;
           }
         }
@@ -254,16 +286,19 @@ function lowerscorebordreset(){
   }
   if (dicenumb[0] != 1 && dicenumb[1] != 1 && dicenumb[2] != 1 && dicenumb[3] != 1 && dicenumb[4] != 1 && dicenumb[5] != 0 
     ||dicenumb[0] != 0 && dicenumb[1] != 1 && dicenumb[2] != 1 && dicenumb[3] != 1 && dicenumb[4] != 1 && dicenumb[5] != 1 ){
+      booleanscore[4] = false;
     document.getElementById("large street").innerHTML = 0;
     }
     if (dicenumb[0] != 1 && dicenumb[1] != 1 && dicenumb[2] != 1 && dicenumb[3] != 1 && dicenumb[4] != 0 && dicenumb[5] != 0||
       dicenumb[0] != 0 && dicenumb[1] != 1 && dicenumb[2] != 1 && dicenumb[3] != 1 && dicenumb[4] != 1 && dicenumb[5] != 0||
       dicenumb[0] != 0 && dicenumb[1] != 0 && dicenumb[2] != 1 && dicenumb[3] != 1 && dicenumb[4] != 1 && dicenumb[5] != 1){
+        booleanscore[3] = false;
   document.getElementById("small street").innerHTML = 0;
-    }
+  }
 }
 
 function savescores(score){
+  //als er op de score wordt gedrukt dan wordt die gesaved in een 2D array voor de 2 spelers en de score wordt onthouden.
   if (savescoresboolean == false){
   if (score <= 5){
   if (scoresaveupper[playerturn-1][score] == false){
@@ -272,6 +307,7 @@ function savescores(score){
       console.log(upperscorebord[playerturn-1][score]);
     }
   }
+
     if (score == 6){
     if(booleanscore[0] == true){
       lowerscorebord[playerturn-1][0] = 30;
@@ -290,6 +326,9 @@ function savescores(score){
     if (score == 9){
     if(booleanscore[3] == true){
       lowerscorebord[playerturn-1][3] = 30;
+    }
+    else if (booleanscore[3] == false){
+      lowerscorebord[playerturn-1][3] = 0;
     }
   }
     if (score == 10){
@@ -311,10 +350,3 @@ function savescores(score){
   }
 }
  
-/*
-for (let i = 0; i < 6; i++){
-een loop die door de array upperscore en lowerscorebord gaat en de html op mijn page verandert en er voor zorgt dat die score 
-niet nog een keer gebruikt kan worden dus geclicked en opgeslagen.
-}
-*/
-
